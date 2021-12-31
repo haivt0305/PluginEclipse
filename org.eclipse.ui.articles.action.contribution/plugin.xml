@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin>
+   
+<!-- Example 1: Adding an action to the default text editor -->
+<extension point="org.eclipse.ui.popupMenus"> 
+	<viewerContribution 
+		id="org.eclipse.ui.articles.action.contribution.popup.editor"
+		targetID="#TextEditorContext"> 
+		<action
+			id="org.eclipse.ui.articles.action.contribution.editor.action1" 
+			label="Editor Action 1"
+			icon="icons/button.gif"
+			helpContextId="org.eclipse.ui.articles.action.contribution.editor.action1" 
+			menubarPath="additions" 
+			class="org.eclipse.ui.articles.action.contribution.EditorAction1"> 
+		</action> 
+	</viewerContribution> 
+</extension> 
+
+<!-- Example 2: Adding a sub-menu to the Navigator view -->
+<extension point="org.eclipse.ui.popupMenus"> 
+	<viewerContribution 
+		id="org.eclipse.ui.articles.action.contribution.popup.navigator"
+		targetID="org.eclipse.ui.views.ResourceNavigator"> 
+		<action
+			id="org.eclipse.ui.articles.action.contribution.navigator.action1" 
+			label="View Action 1"
+			icon="icons/button.gif"
+			helpContextId="org.eclipse.ui.articles.action.contribution.navigator.action1" 
+			menubarPath="additions" 
+			class="org.eclipse.ui.articles.action.contribution.ViewAction1"
+			enablesFor="!">
+		</action> 
+		<menu
+			id="org.eclipse.ui.articles.action.contribution.navigator.subMenu"
+			label="View Sub Menu"
+			path="additions">
+			<separator name="group1"/>
+		</menu>
+		<action
+			id="org.eclipse.ui.articles.action.contribution.navigator.action2" 
+			label="View Action 2"
+			icon="icons/button.gif"
+			helpContextId="org.eclipse.ui.articles.action.contribution.navigator.action2" 
+			menubarPath="org.eclipse.ui.articles.action.contribution.navigator.subMenu/group1" 
+			class="org.eclipse.ui.articles.action.contribution.ViewAction2"
+			enablesFor="1">
+		</action> 
+		<action
+			id="org.eclipse.ui.articles.action.contribution.navigator.action3" 
+			label="View Action 3"
+			icon="icons/button.gif"
+			helpContextId="org.eclipse.ui.articles.action.contribution.navigator.action3" 
+			menubarPath="org.eclipse.ui.articles.action.contribution.navigator.subMenu/group1" 
+			class="org.eclipse.ui.articles.action.contribution.ViewAction3"
+			enablesFor="2+">
+		</action> 
+	</viewerContribution> 
+</extension> 
+
+<!-- Example 3: Adding an action to an object -->
+<extension point="org.eclipse.ui.popupMenus"> 
+	<objectContribution 
+		id="org.eclipse.ui.articles.action.contribution.popup.object"
+		objectClass="org.eclipse.core.resources.IFile"
+		nameFilter="*.java">
+		<filter
+			name="projectNature"
+			value="org.eclipse.jdt.core.javanature">
+		</filter>
+		<action
+			id="org.eclipse.ui.articles.action.contribution.object.action1" 
+			label="Object Action 1"
+			icon="icons/button.gif"
+			helpContextId="org.eclipse.ui.articles.action.contribution.object.action1" 
+			menubarPath="additions" 
+			class="org.eclipse.ui.articles.action.contribution.ObjectAction1"> 
+		</action> 
+	</objectContribution> 
+</extension> 
+
+<!-- Example 4: Adding actions to the Navigator view's menu and toolbar -->
+<extension point="org.eclipse.ui.viewActions"> 
+	<viewContribution 
+		id="org.eclipse.ui.articles.action.contribution.view" 
+		targetID="org.eclipse.ui.views.ResourceNavigator">
+		<action
+			id="org.eclipse.ui.articles.action.contribution.view.action1" 
+			label="View Menu Action" 
+			icon="icons/button.gif"
+			tooltip="Tooltip for View Menu Action"
+			helpContextId="org.eclipse.ui.articles.action.contribution.view.action1" 
+			menubarPath="additions"
+			class="org.eclipse.ui.articles.action.contribution.ViewAction1"> 
+		</action> 
+		<action
+			id="org.eclipse.ui.articles.action.contribution.view.action2" 
+			label="View Toolbar Action" 
+			icon="icons/button.gif"
+			tooltip="Tooltip for View Toolbar Action"
+			helpContextId="org.eclipse.ui.articles.action.contribution.view.action2" 
+			toolbarPath="group1"
+			class="org.eclipse.ui.articles.action.contribution.ViewAction2"
+			enablesFor="*">
+			<selection
+				class="org.eclipse.core.resources.IFile"
+				name="*.java">
+			</selection>
+		</action> 
+	</viewContribution> 
+</extension> 
+
+<!-- Example 5: Adding actions to the default text editor's toolbar -->
+<extension point="org.eclipse.ui.editorActions"> 
+	<editorContribution 
+		id="org.eclipse.ui.articles.action.contribution.editor" 
+		targetID="org.eclipse.ui.DefaultTextEditor">
+		<action
+			id="org.eclipse.ui.articles.action.contribution.editor.action1" 
+			label="Editor Action 1" 
+			icon="icons/button.gif"
+			tooltip="Tooltip for Editor Action 1"
+			helpContextId="org.eclipse.ui.articles.action.contribution.editor.action1" 
+			toolbarPath="Normal/additions"
+			class="org.eclipse.ui.articles.action.contribution.EditorAction1"> 
+		</action> 
+		<action
+			id="org.eclipse.ui.articles.action.contribution.editor.action2" 
+			label="Editor Action 2" 
+			icon="icons/button.gif"
+			tooltip="Tooltip for Editor Action 2"
+			helpContextId="org.eclipse.ui.articles.action.contribution.editor.action2" 
+			toolbarPath="Normal/save.ext"
+			class="org.eclipse.ui.articles.action.contribution.EditorAction2">
+		</action> 
+	</editorContribution> 
+</extension> 
+
+<!-- Example 6: Adding actions to the default text editor's menu bar -->
+<extension point="org.eclipse.ui.editorActions"> 
+	<editorContribution 
+		id="org.eclipse.ui.articles.action.contribution.editor2" 
+		targetID="org.eclipse.ui.DefaultTextEditor">
+		<action
+			id="org.eclipse.ui.articles.action.contribution.editor.action1" 
+			label="Editor Action 1" 
+			icon="icons/button.gif"
+			tooltip="Tooltip for Editor Action 1"
+			helpContextId="org.eclipse.ui.articles.action.contribution.editor.action1" 
+			menubarPath="file/save.ext"
+			class="org.eclipse.ui.articles.action.contribution.EditorAction1"> 
+		</action>
+		
+		<menu
+			id="org.eclipse.ui.articles.action.contribution.editor.subMenu"
+			label="Editor Sub Menu"
+			path="edit/additions">
+			<separator name="group1"/>
+		</menu>
+		<action
+			id="org.eclipse.ui.articles.action.contribution.editor.action2" 
+			label="Editor Action 2" 
+			icon="icons/button.gif"
+			tooltip="Tooltip for Editor Action 2"
+			helpContextId="org.eclipse.ui.articles.action.contribution.editor.action2" 
+			menubarPath="org.eclipse.ui.articles.action.contribution.editor.subMenu/group1"
+			class="org.eclipse.ui.articles.action.contribution.EditorAction2">
+		</action> 
+		<action
+			id="org.eclipse.ui.articles.action.contribution.editor.action3" 
+			label="Editor Action 3" 
+			icon="icons/button.gif"
+			tooltip="Tooltip for Editor Action 3"
+			helpContextId="org.eclipse.ui.articles.action.contribution.editor.action3" 
+			menubarPath="org.eclipse.ui.articles.action.contribution.editor.subMenu/group1"
+			class="org.eclipse.ui.articles.action.contribution.EditorAction3">
+		</action> 
+		
+		<menu
+			id="org.eclipse.ui.articles.action.contribution.editor.topLevelMenu"
+			label="EditorTopLevelMenu"
+			path="additions">
+			<separator name="group1"/>
+		</menu>
+		<action
+			id="org.eclipse.ui.articles.action.contribution.editor.action4" 
+			label="Editor Action 4" 
+			icon="icons/button.gif"
+			tooltip="Tooltip for Editor Action 4"
+			helpContextId="org.eclipse.ui.articles.action.contribution.editor.action4" 
+			menubarPath="org.eclipse.ui.articles.action.contribution.editor.topLevelMenu/group1"
+			class="org.eclipse.ui.articles.action.contribution.EditorAction4">
+		</action> 
+	</editorContribution> 
+</extension> 
+
+<!-- Example 7: Adding action set -->
+<extension point="org.eclipse.ui.actionSets">
+	<actionSet
+		id="org.eclipse.ui.articles.action.contribution.set"
+		label="Action Set 1"
+		visible="true">
+		<action
+			id="org.eclipse.ui.articles.action.contribution.set.action1" 
+			label="Set Action 1" 
+			icon="icons/button.gif"
+			tooltip="Tooltip for Set Action 1"
+			helpContextId="org.eclipse.ui.articles.action.contribution.set.action1" 
+			toolbarPath="Normal/additions"
+			class="org.eclipse.ui.articles.action.contribution.SetAction1"> 
+		</action> 
+		<action
+        class="org.eclipse.ui.articles.action.contribution.SetAction2"
+        helpContextId="org.eclipse.ui.articles.action.contribution.set.action2"
+        icon="icons/button.gif"
+        id="org.eclipse.ui.articles.action.contribution.set.action2"
+        label="Set Action 2"
+        style="pulldown"
+        toolbarPath="Normal/additions"
+        tooltip="Tooltip for Set Action 2">
+		</action> 
+	</actionSet> 
+</extension> 
+
+<!-- Example 8: Adding an action to a custom text editor -->
+<extension point="org.eclipse.ui.popupMenus"> 
+	<viewerContribution 
+		id="org.eclipse.ui.articles.action.contribution.popup.xmleditor"
+		targetID="org.eclipse.articles.xmleditor.editors.XMLEditor.context"> 
+		<action
+			id="org.eclipse.ui.articles.action.contribution.editor.xmltextaction1" 
+			label="XML Text Editor Action"
+			icon="icons/button.gif"
+			helpContextId="org.eclipse.ui.articles.action.contribution.editor.xmltextaction1" 
+			menubarPath="additions" 
+			class="org.eclipse.ui.articles.action.contribution.XMLEditorAction1"> 
+		</action> 
+	</viewerContribution> 
+</extension> 
+
+</plugin>
